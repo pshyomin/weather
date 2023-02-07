@@ -6,7 +6,7 @@ import '../utils/theme_manager.dart';
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
-  ScrollController scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {

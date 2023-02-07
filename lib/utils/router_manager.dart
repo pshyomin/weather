@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../bloc/weather/weather_bloc.dart';
+import '../blocs/weather/weather_bloc.dart';
 import '../pages/home.dart';
 
 class RouterManager {
