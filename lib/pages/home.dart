@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_bg_null_safety/bg/weather_bg.dart';
+import 'package:flutter_weather_bg_null_safety/utils/weather_type.dart';
 
 import '../utils/layout_manager.dart';
-import '../utils/theme_manager.dart';
+import 'weather/widgets/dust.dart';
+import 'weather/widgets/radar.dart';
+import 'weather/widgets/sun.dart';
+import 'weather/widgets/weather.dart';
+import 'weather/widgets/week.dart';
 
-class Home extends StatelessWidget {
-  Home({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
 
   final ScrollController scrollController = ScrollController();
 
@@ -12,29 +18,48 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     LayoutManager layoutManager = LayoutManager(MediaQuery.of(context));
     return Scaffold(
-      backgroundColor: ThemeManager.themeColor(),
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('오늘의 날씨'),
-        elevation: 0,
-        backgroundColor: ThemeManager.themeColor(),
-      ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        controller: scrollController,
-        child: Column(
-          children: [
-            Container(
-              width: layoutManager.getWidth(0.9),
-              height: layoutManager.getHeight(0.3),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.grey,
+      body: Stack(
+        children: [
+          WeatherBg(
+            weatherType: WeatherType.cloudy,
+            width: layoutManager.getWidth(1),
+            height: layoutManager.getHeight(1),
+          ),
+          SafeArea(
+            maintainBottomViewPadding: true,
+            child: SingleChildScrollView(
+              controller: scrollController,
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Column(
+                children: [
+                  Weather(layoutManager: layoutManager),
+                  Week(layoutManager: layoutManager),
+                  Container(
+                    width: layoutManager.getWidth(1),
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Dust(layoutManager: layoutManager),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Sun(layoutManager: layoutManager),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Radar(layoutManager: layoutManager),
+                  ),
+                ],
               ),
-              child: Container(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,7 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../blocs/weather/weather_bloc.dart';
 import '../pages/home.dart';
 
 class RouterManager {
@@ -12,10 +10,7 @@ class RouterManager {
         GoRoute(
           path: '/',
           builder: (context, state) {
-            return BlocProvider(
-              create: (_) => WeatherBloc(),
-              child: Home(),
-            );
+            return HomePage();
           },
         ),
       ],
