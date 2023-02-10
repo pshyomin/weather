@@ -10,7 +10,7 @@ class RouterManager {
         GoRoute(
           path: '/',
           builder: (context, state) {
-            return HomePage();
+            return const HomePage();
           },
         ),
       ],
