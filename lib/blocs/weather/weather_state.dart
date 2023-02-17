@@ -9,10 +9,12 @@ abstract class WeatherState extends Equatable {
 
 class WeatherInitial extends WeatherState {}
 
+class WeatherEmpty extends WeatherState {}
+
 class WeatherLoading extends WeatherState {}
 
 class WeatherLoaded extends WeatherState {
-  final WeatherModel weather;
+  final Weather weather;
   const WeatherLoaded({required this.weather});
   @override
   List<Object> get props => [weather];
