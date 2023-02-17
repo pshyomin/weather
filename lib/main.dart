@@ -13,10 +13,6 @@ import 'utils/router_manager.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //ByteData data =
-  //    PlatformAssetBundle().load('ca/lets-encrypt-r3.pem') as ByteData;
-  //SecurityContext.defaultContext
-  //    .setTrustedCertificatesBytes(data.buffer.asUint8List());
   HttpOverrides.global = MyHttpOverrides();
   final WeatherRepository weatherRepository = WeatherRepository(
     apiClientManager: APIClientManager(
